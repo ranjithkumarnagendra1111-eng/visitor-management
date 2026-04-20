@@ -9,7 +9,7 @@
 2. Install dependencies:
     pip install fastapi uvicorn pydantic
     pip freeze > requirements.txt
-
+    pip install -r requirements.txt
 
 3. Run the app:
    uvicorn src.main:app --reload
@@ -17,3 +17,7 @@
 ## Endpoints
 - GET / → Root endpoint
 - GET /data → Reads sample JSON from data/input/sample.json
+
+4. Tests
+   python -m pytest tests\test_week1.py
+   

@@ -13,3 +13,4 @@ app.include_router(week1_routes.router)
 @app.get("/")
 def root():
     return {"message": "Welcome to Visitor Management"}
+
