@@ -1,5 +1,8 @@
-from fastapi import APIRouter, HTTPException
+import sys
+import os
 import logging
+
+from fastapi import APIRouter, HTTPException
 from src.week1.utils import DataManager
 
 router = APIRouter(prefix="/week1", tags=["Week1"])
@@ -15,8 +18,8 @@ def ingest_bulk_employees():
         raise HTTPException(status_code=500, detail=str(e))
 
 @router.get("/data-types-mutability")
-def demonstrate_data_types_mutability():
-    """Demonstrates data types and mutability with examples."""
+def data_types_mutability():
+    """ data types and mutability with examples."""
     try:
         # Immutable types
         immutable_str = "Hello"
@@ -57,8 +60,8 @@ def demonstrate_data_types_mutability():
         raise HTTPException(status_code=500, detail=str(e))
 
 @router.get("/functions-parameter-passing/{name}/{age}")
-def demonstrate_functions_parameter_passing(name: str, age: int):
-    """Demonstrates functions and parameter passing."""
+def functions_parameter_passing(name: str, age: int):
+    """functions and parameter passing."""
     try:
         result = dm.greet_person(name, age)
         logging.info(f"Function called with params: name={name}, age={age}")
@@ -68,8 +71,8 @@ def demonstrate_functions_parameter_passing(name: str, age: int):
         raise HTTPException(status_code=500, detail=str(e))
 
 @router.get("/error-handling/{trigger_error}")
-def demonstrate_error_handling(trigger_error: bool = False):
-    """Demonstrates error handling with optional error triggering."""
+def error_handling(trigger_error: bool = False):
+    """ error handling with optional error triggering."""
     try:
         if trigger_error:
             raise ValueError("This is a sample error for demonstration")
@@ -82,8 +85,8 @@ def demonstrate_error_handling(trigger_error: bool = False):
         return {"error": str(e), "error_triggered": True, "handled": True}
 
 @router.get("/logging-demo")
-def demonstrate_logging():
-    """Demonstrates logging (vs print) with different levels."""
+def demo_logging():
+    """ logging (vs print) with different levels."""
     try:
         logging.debug("This is a debug message")
         logging.info("This is an info message - logging demo")
@@ -96,8 +99,8 @@ def demonstrate_logging():
         raise HTTPException(status_code=500, detail=str(e))
 
 @router.get("/file-handling-demo")
-def demonstrate_file_handling():
-    """Demonstrates basic file handling operations."""
+def demo_file_handling():
+    """basic file handling operations."""
     try:
         result = dm.basic_file_operations()
         logging.info("File handling demo completed")
@@ -107,8 +110,8 @@ def demonstrate_file_handling():
         raise HTTPException(status_code=500, detail=str(e))
 
 @router.get("/project-structure-modules")
-def demonstrate_project_structure_modules():
-    """Demonstrates project structure and module usage."""
+def project_structure_modules():
+    """ project structure and module usage."""
     try:
         import src.config
         import src.week1.utils
@@ -130,12 +133,9 @@ def demonstrate_project_structure_modules():
         raise HTTPException(status_code=500, detail=str(e))
 
 @router.get("/virtual-environments")
-def demonstrate_virtual_environments():
-    """Demonstrates virtual environment awareness."""
+def virtual_environments():
+    """ virtual environment awareness."""
     try:
-        import sys
-        import os
-        
         venv_info = {
             "python_executable": sys.executable,
             "python_version": sys.version,

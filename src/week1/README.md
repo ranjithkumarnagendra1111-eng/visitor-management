@@ -1,6 +1,6 @@
 # Week 1: Python Foundations & Code Quality
 
-This module demonstrates key Python concepts through separate API endpoints.
+This module key Python concepts through separate API endpoints.
 
 ## Endpoints
 
@@ -10,7 +10,7 @@ This module demonstrates key Python concepts through separate API endpoints.
 
 ### 2. Functions & Parameter Passing
 - **Endpoint**: `GET /week1/functions-parameter-passing/{name}/{age}`
-- **Description**: Demonstrates function calls with path parameters.
+- **Description**:  function calls with path parameters.
 - **Example**: `/week1/functions-parameter-passing/John/25`
 
 ### 3. Error Handling
@@ -20,7 +20,7 @@ This module demonstrates key Python concepts through separate API endpoints.
 
 ### 4. Logging vs Print
 - **Endpoint**: `GET /week1/logging-demo`
-- **Description**: Demonstrates logging at different levels (debug, info, warning, error) instead of print statements.
+- **Description**:  logging at different levels (debug, info, warning, error) instead of print statements.
 
 ### 5. File Handling
 - **Endpoint**: `GET /week1/file-handling-demo`
@@ -29,7 +29,7 @@ This module demonstrates key Python concepts through separate API endpoints.
 
 ### 6. Project Structure & Modules
 - **Endpoint**: `GET /week1/project-structure-modules`
-- **Description**: Demonstrates module imports and project structure usage.
+- **Description**:  module imports and project structure usage.
 
 ### 7. Virtual Environments
 - **Endpoint**: `GET /week1/virtual-environments`
