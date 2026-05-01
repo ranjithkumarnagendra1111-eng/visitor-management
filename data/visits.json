@@ -1,0 +1,10 @@
+[
+    {
+        "visitDate": "2026-05-01",
+        "visitorPhoneNumber": "9876543210",
+        "employeePhoneNumber": "9123456789",
+        "purposeOfVisit": "Interview",
+        "visitDuration": 120,
+        "comments": "Visitor arrived early"
+    }
+]

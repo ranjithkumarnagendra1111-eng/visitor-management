@@ -1,8 +1,43 @@
-import pytest
 import json
-import tempfile
-import os
+from pathlib import Path
+
+import pytest
 from src.week1.utils import DataManager
+
+
+@pytest.fixture
+def sample_employees():
+    return [
+        {"id": "1", "name": "John Doe", "department": "Engineering"},
+        {"id": "2", "name": "Jane Smith", "department": "HR"}
+    ]
+
+
+@pytest.fixture
+def temp_csv_path(tmp_path: Path, sample_employees):
+    csv_path = tmp_path / "employees.csv"
+    csv_path.write_text(
+        "id,name,department\n"
+        + "\n".join(
+            f"{row['id']},{row['name']},{row['department']}" for row in sample_employees
+        ),
+        encoding="utf-8",
+    )
+    return csv_path
+
+
+@pytest.fixture
+def patched_week1_config(tmp_path: Path, monkeypatch, temp_csv_path: Path):
+    from src import config
+
+    json_path = tmp_path / "employees.json"
+    json_path.write_text("[]", encoding="utf-8")
+
+    monkeypatch.setattr(config.config, "employees_csv", temp_csv_path)
+    monkeypatch.setattr(config.config, "employees_json", json_path)
+
+    return json_path
+
 
 def test_data_manager_ingest_bulk_employees():
     """Test the ingest_bulk_employees method with temporary files."""

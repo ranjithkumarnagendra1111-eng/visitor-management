@@ -1,0 +1,16 @@
+[
+    {
+        "visitorName": "string",
+        "visitorPhoneNumber": "1406376070",
+        "visitorDriverLicenseNumber": "string",
+        "visitorCompanyName": "string",
+        "comingFrom": "string"
+    },
+    {
+        "visitorName": "Rahul Verma",
+        "visitorPhoneNumber": "9876543210",
+        "visitorDriverLicenseNumber": "DL1234567890",
+        "visitorCompanyName": "Acme Corp",
+        "comingFrom": "Manglore"
+    }
+]
