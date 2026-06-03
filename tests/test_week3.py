@@ -1,7 +1,7 @@
 import pytest
 from fastapi.testclient import TestClient
 from src.main import app
-from src.week3.database import DatabaseManager, init_db
+from src.database import DatabaseManager, init_db
 from pathlib import Path
 import os
 

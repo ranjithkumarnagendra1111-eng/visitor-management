@@ -2,7 +2,7 @@ import json
 from pathlib import Path
 
 import pytest
-from src.week1.utils import DataManager
+from src.utils import DataIngestionManager
 
 
 @pytest.fixture
@@ -27,7 +27,7 @@ def temp_csv_path(tmp_path: Path, sample_employees):
 
 
 @pytest.fixture
-def patched_week1_config(tmp_path: Path, monkeypatch, temp_csv_path: Path):
+def patched_data_config(tmp_path: Path, monkeypatch, temp_csv_path: Path):
     from src import config
 
     json_path = tmp_path / "employees.json"
@@ -39,15 +39,15 @@ def patched_week1_config(tmp_path: Path, monkeypatch, temp_csv_path: Path):
     return json_path
 
 
-def test_data_manager_ingest_bulk_employees(patched_week1_config, sample_employees):
-    dm = DataManager()
+def test_data_manager_ingest_bulk_employees(patched_data_config, sample_employees):
+    dm = DataIngestionManager()
 
     result = dm.ingest_bulk_employees()
 
     assert "ingested" in result["message"]
     assert result["temp_file"].endswith('.json')
 
-    with open(patched_week1_config, "r", encoding="utf-8") as f:
+    with open(patched_data_config, "r", encoding="utf-8") as f:
         data = json.load(f)
 
     assert len(data) == len(sample_employees)

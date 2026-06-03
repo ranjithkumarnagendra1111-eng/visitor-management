@@ -1,11 +1,11 @@
 from fastapi import FastAPI, Request, HTTPException
 from fastapi.responses import JSONResponse
 from src import routes
-from src.week1 import routes as week1_routes
-from src.week2 import routes as week2_routes
-from src.week3 import routes as week3_routes
 import logging
+from pathlib import Path
 
+log_dir = Path("logs")
+log_dir.mkdir(exist_ok=True)
 logging.basicConfig(filename="logs/app.log", level=logging.INFO)
 
 app = FastAPI(
@@ -14,13 +14,8 @@ app = FastAPI(
     version="1.0.0"
 )
 
-# Include routers
-# app.include_router(routes.router)
-app.include_router(week1_routes.router)
-app.include_router(week2_routes.router)
-app.include_router(week3_routes.router)
+app.include_router(routes.router)
 
-# Error handling middleware
 @app.exception_handler(HTTPException)
 async def http_exception_handler(request: Request, exc: HTTPException):
     return JSONResponse(
@@ -39,4 +34,3 @@ async def general_exception_handler(request: Request, exc: Exception):
 @app.get("/")
 def root():
     return {"message": "Welcome to Visitor Management"}
-

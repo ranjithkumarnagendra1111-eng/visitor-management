@@ -12,7 +12,7 @@ class DatabaseManager:
     def connect(self):
         if not self.connection:
             self.connection = sqlite3.connect(self.db_path, check_same_thread=False)
-            self.connection.row_factory = sqlite3.Row  # For dict-like access
+            self.connection.row_factory = sqlite3.Row
             self.connection.execute("PRAGMA foreign_keys = ON")
         return self.connection
 
@@ -21,7 +21,7 @@ class DatabaseManager:
             self.connection.close()
             self.connection = None
 
-    def execute_query(self, query: str, params: tuple = ()):
+    def execute_query(self, query: str, params: tuple = ()): 
         conn = self.connect()
         try:
             cursor = conn.cursor()
@@ -32,7 +32,7 @@ class DatabaseManager:
             logger.error(f"Database error: {e}")
             raise
 
-    def fetch_all(self, query: str, params: tuple = ()):
+    def fetch_all(self, query: str, params: tuple = ()): 
         conn = self.connect()
         try:
             cursor = conn.cursor()
@@ -42,7 +42,7 @@ class DatabaseManager:
             logger.error(f"Database error: {e}")
             raise
 
-    def fetch_one(self, query: str, params: tuple = ()):
+    def fetch_one(self, query: str, params: tuple = ()): 
         conn = self.connect()
         try:
             cursor = conn.cursor()
@@ -52,11 +52,10 @@ class DatabaseManager:
             logger.error(f"Database error: {e}")
             raise
 
+
 def init_db(db_path: Path):
-    """Initialize the database with tables."""
     db = DatabaseManager(db_path)
     try:
-        # Create employees table
         db.execute_query("""
             CREATE TABLE IF NOT EXISTS employees (
                 id INTEGER PRIMARY KEY,
@@ -66,7 +65,6 @@ def init_db(db_path: Path):
             )
         """)
 
-        # Create visitors table
         db.execute_query("""
             CREATE TABLE IF NOT EXISTS visitors (
                 id INTEGER PRIMARY KEY,
@@ -80,7 +78,6 @@ def init_db(db_path: Path):
             )
         """)
 
-        # Create visits table (for visit history)
         db.execute_query("""
             CREATE TABLE IF NOT EXISTS visits (
                 id INTEGER PRIMARY KEY,

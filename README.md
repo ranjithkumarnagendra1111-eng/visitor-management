@@ -123,13 +123,13 @@ visitor-management/
 
 5. **Access the API**:
    - Root endpoint: `http://127.0.0.1:8000/`
-   - Week 1 endpoint: `POST http://127.0.0.1:8000/week1/ingest_bulk_employees`
+   - Data ingestion endpoint: `POST http://127.0.0.1:8000/ingest_bulk_employees`
 
 ## Usage
 - The Week 1 implementation ingests employee data from `data/employees.csv`, writes it to `data/employees.json`, and creates a temporary JSON file for demonstration.
 - API response includes the number of ingested employees and the path to the temporary file.
 
-## API Documentation (Week 3)
+## API Documentation
 
 ### Authentication
 All Week 3 endpoints require authentication. First, obtain a token:
